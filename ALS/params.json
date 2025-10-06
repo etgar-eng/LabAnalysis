@@ -1,0 +1,518 @@
+{
+  "TEMPERATURE CENTIGRADE": {
+    "unit": "celsius",
+    "values": []
+  },
+  "TURBIDITY NTU": {
+    "unit": "NTU",
+    "values": []
+  },
+  "DISSOLVED OXYGEN AS O2": {
+    "unit": "mg/L",
+    "values": []
+  },
+  "PH MEASURED IN FIELD": {
+    "unit": "unit",
+    "values": []
+  },
+  "REDOX mV FIELD": {
+    "unit": "mV",
+    "values": []
+  },
+  "ELECTRICAL CONDUCTIVITY": {
+    "unit": "mS/cm",
+    "values": []
+  },
+  "OIL LAYER THICKNESS": {
+    "unit": "cm",
+    "values": []
+  },
+  "CALCIUM AS CA": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Calcium"]
+  },
+  "MAGNESIUM AS MG": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Magnesium"]
+  },
+  "SODIUM AS NA": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sodium"]
+  },
+  "POTASSIUM AS K": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Potassium"]
+  },
+  "CHLORIDE AS CL": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Chloride"]
+  },
+  "SULFATE AS SO4": {
+    "unit": "mg/L",
+    "values": []
+  },
+  "BICARBONATE AS HCO3": {
+    "unit": "mg/L",
+    "values": []
+  },
+  "NITRATE AS NO3": {
+    "unit": "mg/L",
+    "values": []
+  },
+  "BORON AS B": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Boron"]
+  },
+  "FLUORIDE AS F": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Fluoride"]
+  },
+  "BROMIDE AS BR": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Bromide"]
+  },
+  "PHOSPHATE AS PO4": {
+    "unit": "mg/L",
+    "values": ["Phosphorus"]
+  },
+  "TOTAL ORGANIC CARBON (TOC)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Total Carbon Dioxide as CO2"]
+  },
+  "TOTAL NITROGEN AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Total Nitrogen as N"]
+  },
+  "ALUMINUM (Al)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Aluminium"]
+  },
+  "SILVER (Ag)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Silver"]
+  },
+  "ARSENIC AS AS": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Arsenic"]
+  },
+  "BARIUM AS BA": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Barium"]
+  },
+  "BERYLIUM (Be)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Beryllium"]
+  },
+  "ANTIMONY (Sb)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Antimony"]
+  },
+  "CADMIUM AS CD": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Cadmium"]
+  },
+  "CYANIDE AS CN": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Total Cyanide"]
+  },
+  "COBALT AS CO": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Cobalt"]
+  },
+  "CHROMIUM AS CR": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Chromium"]
+  },
+  "COPPER AS CU": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Copper"]
+  },
+  "FERROUS IRON DISSOLVED AS FE": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Iron"]
+  },
+  "MERCURY AS HG": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Mercury"]
+  },
+  "MANGANESE TOTAL AS MN": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Manganese"]
+  },
+  "NICKEL AS NI": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Nickel"]
+  },
+  "LEAD AS PB": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Lead"]
+  },
+  "SELENIUM AS SE": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Selenium"]
+  },
+  "ZINC AS ZN": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Zinc"]
+  },
+  "MTBE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Methyl tert-Butyl Ether (MTBE)"]
+  },
+  "TERTIARY BUTYL ALCOHOL": {
+    "unit": "µg/L",
+    "values": ["µg/L", "tert-Butyl alcohol"]
+  },
+  "BENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Benzene"]
+  },
+  "ETHYL BENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Ethylbenzene"]
+  },
+  "TOLUENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Toluene"]
+  },
+  "XYLENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "ortho-Xylene"]
+  },
+  "DICHLORODIFLUOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Dichlorodifluoromethane"]
+  },
+  "CHLOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Chloromethane"]
+  },
+  "VINYL CHLORIDE (VC)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Vinyl chloride"]
+  },
+  "CHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Chloroethane"]
+  },
+  "TRICHLOROFLUOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Trichlorofluoromethane"]
+  },
+  "DICHLOROETHYLENE 1,1 (1,1 DCE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1-Dichloroethene"]
+  },
+  "METHYLENE CHLORIDE (DCM)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Dichloromethane"]
+  },
+  "TRANS-1,2 DICHLOROETHYLENE (T1,2 DCE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "trans-1.2-Dichloroethene"]
+  },
+  "1,1-DICHLOROETHANE (1,1 DCA)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1-Dichloroethane"]
+  },
+  "CIS 1,2 DICHLOROETHYLENE (C1,2 DCE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "cis-1.2-Dichloroethene"]
+  },
+  "CHLOROFORM": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Chloroform"]
+  },
+  "TRICHLORO ETHANE 1,1,1 (1,1,1 TCA)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1.1-Trichloroethane"]
+  },
+  "CARBON TETRACHLORIDE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Tetrachloromethane"]
+  },
+  "1,3-DICHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.3-Dichlorobenzene"]
+  },
+  "DICHLOROETHANE1,2": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2-Dichloroethane"]
+  },
+  "TRICHLOROETHYLENE (TCE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Trichloroethene"]
+  },
+  "1,2-DICHLOROPROPANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2-Dichloropropane"]
+  },
+  "DIBROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Dibromomethane"]
+  },
+  "1,1,2-TRICHLOROETHANE (1,1,2 TCA)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1.2-Trichloroethane"]
+  },
+  "TETRACHLOROETHYLENE (PCE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Tetrachloroethene"]
+  },
+  "DIBROMOCHLOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Dibromochloromethane"]
+  },
+  "ETHYLENE DIBROMIDE (EDB)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2-Dibromoethane (EDB)"]
+  },
+  "MONOCHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Chlorobenzene"]
+  },
+  "STYRENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Styrene"]
+  },
+  "BROMOBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Bromobenzene"]
+  },
+  "1,2,3-TRICHLOROPROPANE (TCP)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2.3-Trichloropropane"]
+  },
+  "1,3,5 TRIMETHYLBENZENE (MESITYLENE)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.3.5-Trimethylbenzene"]
+  },
+  "1,2,4 TRIMETHYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2.4-Trimethylbenzene"]
+  },
+  "1,4 DICHLOROBENZENE (1,4 DCB)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.4-Dichlorobenzene"]
+  },
+  "1,2 DICHLOROBENZENE (ODCB)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2-Dichlorobenzene"]
+  },
+  "1,2-DIBROMO-3-CHLOROPROPANE (DBCP)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2-Dibromo-3-chloropropane"]
+  },
+  "1,2,4-TRICHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2.4-Trichlorobenzene"]
+  },
+  "NAPTHALENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Naphthalene"]
+  },
+  "1,2,3-TRICHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.2.3-Trichlorobenzene"]
+  },
+  "1,1,1,2-TETRACHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1.1.2-Tetrachloroethane"]
+  },
+  "1,1,2,2-TETRACHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1.2.2-Tetrachloroethane"]
+  },
+  "1,1-DICHLOROPROPENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.1-Dichloropropene"]
+  },
+  "BROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Bromomethane"]
+  },
+  "ACETONE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Acetone"]
+  },
+  "TRIBROMOMETHANE (BROMOFORM)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Bromoform"]
+  },
+  "DICHLOROBROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Bromodichloromethane"]
+  },
+  "FORMALDEHYDE": {
+    "unit": "µg/L",
+    "values": []
+  },
+  "1,4 DIOXANE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "1.4-Dioxane"]
+  },
+  "PERCHLORATE": {
+    "unit": "µg/L",
+    "values": []
+  },
+  "TOTAL PETROLEUM HYDROCARBONS (TPH)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Total Petroleum Hydrocarbons"]
+  },
+  "POLYAROMATIC HYDROCARBONS (PAH)": {
+    "unit": "µg/L",
+    "values": []
+  },
+  "OIL AND GREASE": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Oil and Grease"]
+  },
+  "AMMONIA AND AMMONIUM IONS AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Ammonia and ammonium ions"]
+  },
+  "AMMONIA AND AMMONIUM IONS AS NH4": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Ammonia and ammonium ions"]
+  },
+  "ANIONIC SURFACTANTS AS MBAS": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Anionic Surfactants as MBAS"]
+  },
+  "BIOCHEMICAL OXYGEN DEMAND (BOD 5)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Biochemical Oxygen Demand"]
+  },
+  "CARBONATES (CO3 2-)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Carbonates (CO3 2-)"]
+  },
+  "CHEMICAL OXYGEN DEMAND (COD-Mn)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Chemical Oxygen Demand"]
+  },
+  "SULFIDES AS H2S": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sulfides as H2S"]
+  },
+  "TOTAL KJELDAHL NITROGEN AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Total Kjeldahl Nitrogen as N"]
+  },
+  "BASE NEUTRALIZING CAPACITY (ACIDITY) PH 8.3": {
+    "unit": "mmol/L",
+    "values": ["mmol/L", "Base neutralizing capacity"]
+  },
+  "HYDROGEN CARBONATES (HCO3-)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Hydrogen carbonates (HCO3-)"]
+  },
+  "SULFIDE AS S2-": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sulfide as S2-"]
+  },
+  "TOTAL CARBON DIOXIDE AS CO2": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Total Carbon Dioxide as CO2"]
+  },
+  "BASE NEUTRALIZING CAPACITY (ACIDITY) PH 4.5": {
+    "unit": "mmol/L",
+    "values": ["mmol/L", "Base neutralizing capacity"]
+  },
+  "DISSOLVED SOLIDS DRIED AT 105°C": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Dissolved solids dried at 105 °C"]
+  },
+  "FREE CARBON DIOXIDE AS CO2": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Free Carbon Dioxide as CO2"]
+  },
+  "NITRATES": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Nitrates"]
+  },
+  "SUSPENDED SOLIDS DRIED AT 105°C": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Suspended solids dried at 105 °C"]
+  },
+  "AGGRESSIVE CO2": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Aggressive CO2"]
+  },
+  "NITRITES": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Nitrites"]
+  },
+  "SULPHATE AS SO4": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sulphate as SO4 2-"]
+  },
+  "NITRATE AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Nitrate as N"]
+  },
+  "NITRITE AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Nitrite as N"]
+  },
+  "ACID NEUTRALIZING CAPACITY (ALKALINITY) PH 4.5": {
+    "unit": "mmol/L",
+    "values": ["mmol/L", "Acid neutralizing capacity"]
+  },
+  "ACID NEUTRALIZING CAPACITY (ALKALINITY) PH 8.3": {
+    "unit": "mmol/L",
+    "values": ["mmol/L", "Acid neutralizing capacity"]
+  },
+  "BISMUTH": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Bismuth"]
+  },
+  "LITHIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Lithium"]
+  },
+  "MOLYBDENUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Molybdenum"]
+  },
+  "PHOSPHORUS": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Phosphorus"]
+  },
+  "SILICON": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Silicon"]
+  },
+  "STRONTIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Strontium"]
+  },
+  "SULPHUR": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sulphur"]
+  },
+  "TELLURIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Tellurium"]
+  },
+  "THALLIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Thallium"]
+  },
+  "TIN": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Tin"]
+  },
+  "TITANIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Titanium"]
+  },
+  "VANADIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Vanadium"]
+  },
+  "ZIRCONIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Zirconium"]
+  }
+}

@@ -1,0 +1,780 @@
+{
+  "TEMPERATURE CENTIGRADE": {
+    "unit": "celsius"
+  },
+  "TURBIDITY NTU": {
+    "unit": "NTU",
+    "values": ["NTU", "עכירות"]
+  },
+  "DISSOLVED OXYGEN AS O2": {
+    "unit": "mg/L"
+  },
+  "PH MEASURED IN FIELD": {
+    "unit": "unit"
+  },
+  "REDOX mV FIELD": {
+    "unit": "mV"
+  },
+  "ELECTRICAL CONDUCTIVITY": {
+    "unit": "mS/cm"
+  },
+  "OIL LAYER THICKNESS": {
+    "unit": "cm"
+  },
+  "CALCIUM AS CA": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Caסידן"]
+  },
+  "MAGNESIUM AS MG": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Mgמגנזיום"]
+  },
+  "SODIUM AS NA": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Naנתרן"]
+  },
+  "POTASSIUM AS K": {
+    "unit": "mg/L",
+    "values": ["mg/L", "אשלגןK"]
+  },
+  "CHLORIDE AS CL": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Clכלורידים"]
+  },
+  "SULFATE AS SO4": {
+    "unit": "mg/L",
+    "values": ["mg/L", "SOסולפט"]
+  },
+  "BICARBONATE AS HCO3": {
+    "unit": "mg/L",
+    "values": ["mg/L", "ביקרבונט"]
+  },
+  "NITRATE AS NO3": {
+    "unit": "mg/L",
+    "values": ["µg/L", "Noניטראט"]
+  },
+  "BORON AS B": {
+    "unit": "mg/L",
+    "values": ["mg/L", "בורוןB"]
+  },
+  "FLUORIDE AS F": {
+    "unit": "mg/L",
+    "values": ["µg/L", "Fפלואוריד"]
+  },
+  "BROMIDE AS BR": {
+    "unit": "mg/L",
+    "values": ["µg/L", "Brברומידים"]
+  },
+  "PHOSPHATE AS PO4": {
+    "unit": "mg/L",
+    "values": ["µg/L", "POפוספאט"]
+  },
+  "TOTAL ORGANIC CARBON (TOC)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "אורגניפחמןכלל"]
+  },
+  "TOTAL NITROGEN AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "חישוביכלליחנקן"]
+  },
+  "ALUMINUM (Al)": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Alאלומיניום"]
+  },
+  "SILVER (Ag)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Agכסף"]
+  },
+  "ARSENIC AS AS": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Asארסן"]
+  },
+  "BARIUM AS BA": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Baבריום"]
+  },
+  "BERYLIUM (Be)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Beבריליום"]
+  },
+  "ANTIMONY (Sb)": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Sbטימוןאנ"]
+  },
+  "CADMIUM AS CD": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Cdקדמיום"]
+  },
+  "CYANIDE AS CN": {
+    "unit": "µg/L",
+     "values": ["µg/L", "ציאניד"]
+  },
+  "COBALT AS CO": {
+    "unit": "µg/L",
+    "values": ["mg/L", "COקובלט"]
+  },
+  "CHROMIUM AS CR": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Crכרום"]
+  },
+  "COPPER AS CU": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Cuנחושת"]
+  },
+  "FERROUS IRON DISSOLVED AS FE": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Feברזל"]
+  },
+  "MERCURY AS HG": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Hgכספית"]
+  },
+  "MANGANESE TOTAL AS MN": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Mnמנגן"]
+  },
+  "NICKEL AS NI": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Niניקל"]
+  },
+  "LEAD AS PB": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Pbעופרת"]
+  },
+  "SELENIUM AS SE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Seסלן"]
+  },
+  "ZINC AS ZN": {
+    "unit": "µg/L",
+    "values": ["mg/L", "Znאבץ"]
+  },
+  "LITHIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Liליתיום"]
+  },
+  "MOLYBDENUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Moמוליבדן"]
+  },
+  "PHOSPHORUS": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Pזרחן"]
+  },
+  "SILICON": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Siסיליקון"]
+  },
+  "STRONTIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Stסטרונציום"]
+  },
+  "SULPHUR": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Sגופרית"]
+  },
+  "TIN": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Snבדיל"]
+  },
+  "TITANIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Tiטיטניום"]
+  },
+  "THALLIUM": {
+    "unit": "mg/L"
+  },
+  "VANADIUM": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Vוונדיום"]
+  },
+  "MTBE": {
+    "unit": "µg/L",
+    "values": ["mg/L", "MTBEbyPurgeTrap"]
+  },
+  "TERTIARY BUTYL ALCOHOL": {
+    "unit": "µg/L"
+  },
+  "BENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Benzene"]
+  },
+  "ETHYL BENZENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Ethylbenzene"]
+  },
+  "TOLUENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Toluene"]
+  },
+  "XYLENE": {
+    "unit": "µg/L",
+    "values": ["µg/L", "Xylene"]
+  },
+  "DICHLORODIFLUOROMETHANE": {
+    "unit": "µg/L"
+  },
+  "CHLOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Methanechloro"]
+  },
+  "VINYL CHLORIDE (VC)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Vinylchloride"]
+  },
+  "CHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Chloroethane"]
+  },
+  "TRICHLOROFLUOROMETHANE": {
+    "unit": "µg/L"
+  },
+  "DICHLOROETHYLENE 1,1 (1,1 DCE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloroethylene"]
+  },
+  "METHYLENE CHLORIDE (DCM)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloromethane"]
+  },
+  "TRANS-1,2 DICHLOROETHYLENE (T1,2 DCE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "transDichloroethene"]
+  },
+  "1,1-DICHLOROETHANE (1,1 DCA)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloroethane"]
+  },
+  "CIS 1,2 DICHLOROETHYLENE (C1,2 DCE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "cisDichloroethene"]
+  },
+  "CHLOROFORM": {
+    "unit": "µg/L",
+    "values": ["ppm", "Chloroform"]
+  },
+  "TRICHLORO ETHANE 1,1,1 (1,1,1 TCA)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichloroethane"]
+  },
+  "CARBON TETRACHLORIDE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Carbontetrachloride"]
+  },
+  "1,3-DICHLOROBENZENE": {
+    "unit": "µg/L"
+  },
+  "DICHLOROETHANE1,2": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloroethane"]
+  },
+  "TRICHLOROETHYLENE (TCE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichloroethene"]
+  },
+  "1,2-DICHLOROPROPANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloropropane"]
+  },
+  "DIBROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dibromomethane"]
+  },
+  "1,1,2-TRICHLOROETHANE (1,1,2 TCA)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichloroethane"]
+  },
+  "TETRACHLOROETHYLENE (PCE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Tetrachloroethene"]
+  },
+  "DIBROMOCHLOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Bromodichloromethane"]
+  },
+  "ETHYLENE DIBROMIDE (EDB)": {
+    "unit": "µg/L",
+    "values": ["ppm", "DibromoethaneEthylenedibromide"]
+  },
+  "MONOCHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Chlorobenzene"]
+  },
+  "STYRENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Styrene"]
+  },
+  "BROMOBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Bromobenzene"]
+  },
+  "1,2,3-TRICHLOROPROPANE (TCP)": {
+    "unit": "µg/L"
+  },
+  "1,3,5 TRIMETHYLBENZENE (MESITYLENE)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trimethylbenzene"]
+  },
+  "1,2,4 TRIMETHYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trimethylbenzene"]
+  },
+  "1,4 DICHLOROBENZENE (1,4 DCB)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichlorobenzene"]
+  },
+  "1,2 DICHLOROBENZENE (ODCB)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichlorobenzene"]
+  },
+  "1,2-DIBROMO-3-CHLOROPROPANE (DBCP)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dibromochloropropane"]
+  },
+  "1,2,4-TRICHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichlorobenzene"]
+  },
+  "NAPTHALENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Naphthalene"]
+  },
+  "1,2,3-TRICHLOROBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichlorobenzene"]
+  },
+  "1,1,1,2-TETRACHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "tetrachlorethane"]
+  },
+  "1,1,2,2-TETRACHLOROETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Tetrachloroethane"]
+  },
+  "1,1-DICHLOROPROPENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "DICHLOROPROPENE"]
+  },
+  "BROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Methylbromide"]
+  },
+  "ACETONE": {
+    "unit": "µg/L"
+  },
+  "TRIBROMOMETHANE (BROMOFORM)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Bromoform"]
+  },
+  "DICHLOROBROMOMETHANE": {
+    "unit": "µg/L"
+  },
+  "FORMALDEHYDE": {
+    "unit": "µg/L"
+  },
+  "1,4 DIOXANE": {
+    "unit": "µg/L"
+  },
+  "PERCHLORATE": {
+    "unit": "µg/L"
+  },
+  "TOTAL PETROLEUM HYDROCARBONS (TPH)": {
+    "unit": "µg/L"
+  },
+  "POLYAROMATIC HYDROCARBONS (PAH)": {
+    "unit": "µg/L"
+  },
+  "OIL AND GREASE": {
+    "unit": "mg/L",
+    "values": ["mg/L", "IRבמכשירכללישמן"]
+  },
+  "AMMONIA AND AMMONIUM IONS AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "אמוניאק לי חנקן"]
+  },
+  "AMMONIA AND AMMONIUM IONS AS NH4": {
+    "unit": "mg/L"
+  },
+  "ANIONIC SURFACTANTS AS MBAS": {
+    "unit": "mg/L",
+    "values": ["mg/L", "MBASאניוני דטרגנט"]
+  },
+  "BIOCHEMICAL OXYGEN DEMAND (BOD 5)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "BODt כללית ביולוגית חמצן צריכת"]
+  },
+  "CARBONATES (CO3 2-)": {
+    "unit": "mg/L"
+  },
+  "CHEMICAL OXYGEN DEMAND (COD-Mn)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "CODt כללית כימית חמצן צריכת"]
+  },
+  "SULFIDES AS H2S": {
+    "unit": "mg/L",
+    "values": ["mg/L", "סולפיד"]
+  },
+  "TOTAL KJELDAHL NITROGEN AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "קלדל חנקן"]
+  },
+  "BASE NEUTRALIZING CAPACITY (ACIDITY) PH 8.3": {
+    "unit": "mmol/L"
+  },
+  "HYDROGEN CARBONATES (HCO3-)": {
+    "unit": "mg/L",
+    "values": ["mg/L", "ביקרבונט"]
+  },
+  "SULFIDE AS S2-": {
+    "unit": "mg/L"
+  },
+  "TOTAL CARBON DIOXIDE AS CO2": {
+    "unit": "mg/L"
+  },
+  "BASE NEUTRALIZING CAPACITY (ACIDITY) PH 4.5": {
+    "unit": "mmol/L"
+  },
+  "DISSOLVED SOLIDS DRIED AT 105°C": {
+    "unit": "mg/L",
+    "values": ["mg/L", "צמ מומסים מוצקים כלל"]
+  },
+  "FREE CARBON DIOXIDE AS CO2": {
+    "unit": "mg/L"
+  },
+  "NITRATES": {
+    "unit": "mg/L"
+  },
+  "SUSPENDED SOLIDS DRIED AT 105°C": {
+    "unit": "mg/L",
+    "values": ["mg/L", "צמ מרחפים מוצקים כלל"]
+  },
+  "AGGRESSIVE CO2": {
+    "unit": "mg/L"
+  },
+  "NITRITES": {
+    "unit": "mg/L"
+  },
+  "SULPHATE AS SO4": {
+    "unit": "mg/L"
+  },
+  "NITRATE AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "NNO ניטראט חנקן"]
+  },
+  "NITRITE AS N": {
+    "unit": "mg/L",
+    "values": ["mg/L", "NNO ניטריט חנקן"]
+  },
+  "ACID NEUTRALIZING CAPACITY (ALKALINITY) PH 4.5": {
+    "unit": "mmol/L",
+    "values": ["ppm", "והגבהה אלקליניות"]
+  },
+  "ACID NEUTRALIZING CAPACITY (ALKALINITY) PH 8.3": {
+    "unit": "mmol/L"
+  },
+  "BISMUTH": {
+    "unit": "mg/L"
+  },
+  "TELLURIUM": {
+    "unit": "mg/L"
+  },
+  "ZIRCONIUM": {
+    "unit": "mg/L"
+  },
+  "PHENOL": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Phenol"]
+  },
+  "CRESOL": {
+    "unit": "mg/L",
+    "values": ["mg/L", "Cresol"]
+  },
+  "TOTAL CHLORINE": {
+    "unit": "mg/L",
+    "values": ["mg/L", "TotalasCl"]
+  },
+  "ICP-MS SCAN": {
+    "unit": "ppm",
+    "values": ["ppm", "ICPsc"]
+  },
+  "EPA SEMIVOLATILE ORGANICS": {
+    "unit": "ppb",
+    "values": ["ppb", "EPACשיטת על מבוססת וגמה"]
+  },
+  "2-CHLORONAPHTHALENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Chloronaphthalene"]
+  },
+  "2,4,5-TRICHLOROPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Trichlorophenol"]
+  },
+  "2,4,6-TRICHLOROPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Trichlorophenol"]
+  },
+  "2,4-DIMETHYLPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Dimethylphenol"]
+  },
+  "2,4-DINITROTOLUENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dinitrotoluene"]
+  },
+  "2,6-DINITROTOLUENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dinitrotoluene"]
+  },
+  "1-CHLORONAPHTHALENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Chloronaphthalene"]
+  },
+  "1-METHYLNAPHTHALENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Methylnaphthalene"]
+  },
+  "2-NITROANILINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitroaniline"]
+  },
+  "2-NITROPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitrophenol"]
+  },
+  "3,3-DICHLOROBENZIDINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dichlorobenzidine"]
+  },
+  "3-NITROANILINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitroaniline"]
+  },
+  "4,6-DINITRO-2-METHYLPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Dinitromethylphenol"]
+  },
+  "4-BROMOPHENYL-PHENYLETHER": {
+    "unit": "ppb",
+    "values": ["ppb", "Bromophenylphenylether"]
+  },
+  "4-CHLORO-3-METHYLPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Chloromethylphenol"]
+  },
+  "4-CHLOROANILINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Chloroaniline"]
+  },
+  "4-CHLOROPHENYL-PHENYLETHER": {
+    "unit": "ppb",
+    "values": ["ppb", "Chlorophenylphenylether"]
+  },
+  "4-NITROANILINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitroaniline"]
+  },
+  "4-NITROPHENOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitrophenol"]
+  },
+  "ACENAPHTHYLENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Acenaphthylene"]
+  },
+  "ACENAPHTHENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Acenaphthylenedihydro"]
+  },
+  "ACETOPHENONE": {
+    "unit": "ppb",
+    "values": ["ppb", "Acetophenone"]
+  },
+  "ANILINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Aniline"]
+  },
+  "ANTHRACENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Anthracene"]
+  },
+  "BENZYL ALCOHOL": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzenemethanol"]
+  },
+  "BENZIDINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzidine"]
+  },
+  "BENZO(A)ANTHRACENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzoaanthracene"]
+  },
+  "BENZO(A)PYRENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzoapyrene"]
+  },
+  "BENZO(B)FLUORANTHENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzobfluoranthene"]
+  },
+  "BENZO(G,H,I)PERYLENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzoghiperylene"]
+  },
+  "BENZO(K)FLUORANTHENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Benzokfluoranthene"]
+  },
+  "BIS(2-CHLOROETHOXY)METHANE": {
+    "unit": "ppb",
+    "values": ["ppb", "Bischloroethoxymethane"]
+  },
+  "BIS(2-CHLOROETHYL)ETHER": {
+    "unit": "ppb",
+    "values": ["ppb", "Bischloroethylether"]
+  },
+  "BIS(2-CHLOROISOPROPYL)ETHER": {
+    "unit": "ppb",
+    "values": ["ppb", "Bischloroisopropylether"]
+  },
+  "BUTYLBENZYLPHTHALATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Butylbenzylphthalate"]
+  },
+  "CHRYSENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Chrysene"]
+  },
+  "DI(2-ETHYLHEXYL)PHTHALATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Diethylhexylphthalate"]
+  },
+  "DIBENZ(A,H)ANTHRACENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dibenzahanthracene"]
+  },
+  "DIBENZOFURAN": {
+    "unit": "ppb",
+    "values": ["ppb", "Dibenzofuran"]
+  },
+  "DIETHYLPHTHALATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Diethylphthalate"]
+  },
+  "DIMETHYLPHTHALATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dimethylphthalate"]
+  },
+  "DI-N-BUTYLPHTHALATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Dinbutylphthalate"]
+  },
+  "DIPHENYLAMINE": {
+    "unit": "ppb",
+    "values": ["ppb", "Diphenylamine"]
+  },
+  "ETHYL METHANESULFONATE": {
+    "unit": "ppb",
+    "values": ["ppb", "Ethylmethanesulfonate"]
+  },
+  "FLUORANTHENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Fluoranthene"]
+  },
+  "FLUORENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Fluorene"]
+  },
+  "HEXACHLOROETHANE": {
+    "unit": "ppb",
+    "values": ["ppb", "Hexachloroethane"]
+  },
+  "INDENO(1,2,3-C,D)PYRENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Indenocdpyrene"]
+  },
+  "ISOPHORONE": {
+    "unit": "ppb",
+    "values": ["ppb", "Isophorone"]
+  },
+  "NITROBENZENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Nitrobenzene"]
+  },
+  "N-NITROSODIMETHYLAMINE": {
+    "unit": "ppb",
+    "values": ["ppb", "NNitrosodimethylamine"]
+  },
+  "N-NITROSODIBUTYLAMINE": {
+    "unit": "ppb",
+    "values": ["ppb", "NNitrosodinbutylamine"]
+  },
+  "N-NITROSODIPROPYLAMINE": {
+    "unit": "ppb",
+    "values": ["ppb", "NNitrosodinpropylamine"]
+  },
+  "PHENANTHRENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Phenanthrene"]
+  },
+  "PYRENE": {
+    "unit": "ppb",
+    "values": ["ppb", "Pyrene"]
+  },
+  "HEXACHLOROBUTADIENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Hexachlorobutadiene"]
+  },
+  "ISOPROPYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Isopropylbenzene"]
+  },
+  "N-BUTYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "nButylbenzene"]
+  },
+  "N-PROPYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "nPropylbenzene"]
+  },
+  "SEC-BUTYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "secButylbenzene"]
+  },
+  "TERT-BUTYLBENZENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "tertButylbenzene"]
+  },
+  "P-ISOPROPYLTOLUENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "pIsopropyltoluenenotactive"]
+  },
+  "CIS-1,3-DICHLOROPROPENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "cisDichloropropene"]
+  },
+  "TRANS-1,3-DICHLOROPROPENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "transDichloropropene"]
+  },
+  "CHLORODIBROMOMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Chlorodibromomethane"]
+  },
+  "CHLOROTOLUENE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Chlorotoluene"]
+  },
+  "BROMOCHLOROMETHANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Bromochloromethan"]
+  },
+  "1,2,3-TRICHLOROPROPANE (TCP)": {
+    "unit": "µg/L",
+    "values": ["ppm", "Trichloropropane"]
+  },
+  "DICHLOROPROPANE": {
+    "unit": "µg/L",
+    "values": ["ppm", "Dichloropropane"]
+  }
+}
