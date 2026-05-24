@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: lab-analysis
+Version: 0.1.0
+Summary: PDF lab report analyzer with Streamlit interface
+Requires-Python: >=3.13
+Requires-Dist: streamlit
+Requires-Dist: pandas
+Requires-Dist: plotly
+Requires-Dist: PyPDF2
+Requires-Dist: pdfplumber
+Requires-Dist: camelot-py
+Requires-Dist: Pillow
+Requires-Dist: matplotlib
+Requires-Dist: numpy
+Requires-Dist: openpyxl
+Requires-Dist: tensorflow
+Requires-Dist: scikit-learn
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"

@@ -1,5 +1,6 @@
 import os
 import io
+import re
 from pathlib import Path
 import pandas as pd
 import streamlit as st
@@ -7,18 +8,21 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 from functions import Extractor
-from main import PdfLabAnalysisReader
+from main import PdfLabAnalysisReader, _sheet_name
 
 
-def run_processing(lab_name: str, input_pdf_path: str, output_filename: str | None, multi: bool = False) -> str:
+def run_processing(lab_name: str, input_pdf_path: str, output_filename: str | None,
+                   multi: bool = False, site: str = "") -> str:
     class Args:
-        def __init__(self, lab: str, input_path: str, output: str | None, multi_flag: bool):
-            self.lab = lab
-            self.input = input_path
+        def __init__(self, lab: str, input_path: str, output: str | None,
+                     multi_flag: bool, site_name: str):
+            self.lab    = lab
+            self.input  = input_path
             self.output = output
-            self.multi = 'true' if multi_flag else 'false'
+            self.multi  = 'true' if multi_flag else 'false'
+            self.site   = site_name
 
-    args = Args(lab_name, input_pdf_path, output_filename, multi)
+    args = Args(lab_name, input_pdf_path, output_filename, multi, site)
 
     extractor_instance = Extractor(args)
     _ = PdfLabAnalysisReader(args)
@@ -35,6 +39,9 @@ def run_processing(lab_name: str, input_pdf_path: str, output_filename: str | No
             df_format['values'] = df_format['test'].apply(
                 lambda i: extractor_instance.search_for_value(all_sheets[sheet_name], i))
             df_format.to_excel(writer, index=False, sheet_name=sheet_name)
+        # Remove the default "Sheet" ONLY if other sheets exist
+        if 'Sheet' in writer.book.sheetnames and len(writer.book.sheetnames) > 1:
+            writer.book.remove(writer.book['Sheet'])
 
     return output_path
 
@@ -208,6 +215,11 @@ def main():
         st.title("Configuration")
         labs = ['ALS', 'Bactochem', 'Aminolab', 'Element']
         selected_lab = st.selectbox("Select Lab", labs, index=0)
+        site_name = st.text_input(
+            "שם הקידוח / אתר הדיגום",
+            placeholder="לדוגמה: קידוח 5, ביג פתח תקוה",
+            help="ישמש כשם הטאב בקובץ האקסל"
+        )
         multi_mode = st.toggle("Multi-labs PDF", value=False,
                                help="Enable if PDF contains multiple labs")
         output_name = st.text_input("Output filename (optional)",
@@ -244,6 +256,7 @@ def main():
                         input_pdf_path=str(temp_pdf_path),
                         output_filename=output_name.strip() or None,
                         multi=multi_mode,
+                        site=site_name.strip(),
                     )
 
                     status.update(label="Processing Complete!", state="complete")

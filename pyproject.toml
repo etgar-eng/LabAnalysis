@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lab-analysis"
+version = "0.1.0"
+description = "PDF lab report analyzer with Streamlit interface"
+requires-python = ">=3.13"
+dependencies = [
+    "streamlit",
+    "pandas",
+    "plotly",
+    "PyPDF2",
+    "pdfplumber",
+    "camelot-py",
+    "Pillow",
+    "matplotlib",
+    "numpy",
+    "openpyxl",
+    "tensorflow",
+    "scikit-learn",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]

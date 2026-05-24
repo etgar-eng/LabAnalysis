@@ -1,0 +1,15 @@
+streamlit
+pandas
+plotly
+PyPDF2
+pdfplumber
+camelot-py
+Pillow
+matplotlib
+numpy
+openpyxl
+tensorflow
+scikit-learn
+
+[dev]
+pytest

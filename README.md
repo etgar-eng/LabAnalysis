@@ -97,28 +97,17 @@ brew install ghostscript
 
 ### Python packages
 
+Dependencies are declared in `pyproject.toml` and managed with [uv](https://docs.astral.sh/uv/).
+
 ```bash
-pip install -r requirements.txt
+# Install uv (if not already installed)
+pip install uv
+
+# Sync the environment (creates .venv automatically)
+uv sync
 ```
 
-`requirements.txt`:
-```
-pandas>=1.5.0
-numpy>=1.23.0
-PyPDF2>=3.0.0
-openpyxl>=3.0.0
-streamlit>=1.28.0
-plotly>=5.17.0
-camelot-py[cv]>=0.11.0
-pdfplumber>=0.9.0
-PyMuPDF>=1.22.0
-tensorflow>=2.13.0
-scikit-learn>=1.3.0
-Pillow>=10.0.0
-matplotlib>=3.7.0
-opencv-python>=4.8.0
-ghostscript>=0.7
-```
+All subsequent commands should be run with `uv run` so they use the managed environment.
 
 ---
 
@@ -128,10 +117,10 @@ ghostscript>=0.7
 
 ```bash
 # Minimal
-python main.py --lab Bactochem --input bactochem/report.pdf
+uv run main.py --lab Bactochem --input bactochem/report.pdf
 
 # With metadata
-python main.py \
+uv run main.py \
     --lab     Aminolab \
     --input   aminolab/big_petah_tikva.pdf \
     --output  petah_tikva_results \
@@ -140,7 +129,7 @@ python main.py \
     --time    "09:30"
 
 # PDF containing pages from multiple labs (auto-detect)
-python main.py --lab Bactochem --input mixed.pdf --multi true
+uv run main.py --lab Bactochem --input mixed.pdf --multi true
 ```
 
 **Arguments:**
@@ -166,7 +155,7 @@ python main.py --lab Bactochem --input mixed.pdf --multi true
 ### Streamlit web UI
 
 ```bash
-streamlit run app.py
+uv run streamlit run app.py
 # Open http://localhost:8501
 ```
 

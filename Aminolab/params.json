@@ -75,7 +75,7 @@
   },
   "TOTAL NITROGEN AS N": {
     "unit": "mg/L",
-    "values": ["mg/L", "חישוביכלליחנקן"]
+    "values": ["mg/L", "חישוביכללי"]
   },
   "ALUMINUM (Al)": {
     "unit": "µg/L",
@@ -99,7 +99,7 @@
   },
   "ANTIMONY (Sb)": {
     "unit": "µg/L",
-    "values": ["µg/L", "Sbטימוןאנ"]
+    "values": ["µg/L", "Sbאנטימון"]
   },
   "CADMIUM AS CD": {
     "unit": "µg/L",
@@ -190,7 +190,7 @@
   },
   "MTBE": {
     "unit": "µg/L",
-    "values": ["mg/L", "MTBEbyPurgeTrap"]
+    "values": ["µg/L", "MTBE"]
   },
   "TERTIARY BUTYL ALCOHOL": {
     "unit": "µg/L"
@@ -220,7 +220,7 @@
   },
   "VINYL CHLORIDE (VC)": {
     "unit": "µg/L",
-    "values": ["ppm", "Vinylchloride"]
+    "values": ["ppm", "Vinyl chloride"]
   },
   "CHLOROETHANE": {
     "unit": "µg/L",
@@ -235,7 +235,7 @@
   },
   "METHYLENE CHLORIDE (DCM)": {
     "unit": "µg/L",
-    "values": ["ppm", "Dichloromethane"]
+    "values": ["ppm", "Methylene chloride"]
   },
   "TRANS-1,2 DICHLOROETHYLENE (T1,2 DCE)": {
     "unit": "µg/L",
@@ -243,7 +243,7 @@
   },
   "1,1-DICHLOROETHANE (1,1 DCA)": {
     "unit": "µg/L",
-    "values": ["ppm", "Dichloroethane"]
+    "values": ["ppm", "1,1-Dichloroethylene"]
   },
   "CIS 1,2 DICHLOROETHYLENE (C1,2 DCE)": {
     "unit": "µg/L",
@@ -274,7 +274,7 @@
   },
   "1,2-DICHLOROPROPANE": {
     "unit": "µg/L",
-    "values": ["ppm", "Dichloropropane"]
+    "values": ["ppm", "1,2-Dichloroethane"]
   },
   "DIBROMOMETHANE": {
     "unit": "µg/L",
