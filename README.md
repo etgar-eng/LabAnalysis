@@ -1,266 +1,323 @@
-# Lab PDF Analysis Tool
+# Lab Analysis – PDF to Water Authority Excel Report
 
-A comprehensive automated system for extracting, analyzing, and visualizing laboratory test results from PDF reports. The tool uses machine learning for lab identification and provides an interactive web interface built with Streamlit.
+Automated pipeline that reads chemical analysis PDF reports from certified Israeli laboratories, maps the results to the **Israel Water Authority reporting format**, checks compliance against **Israel Drinking Water Regulations 2013** (תקנות בריאות העם, תשע"ג), and produces a styled Excel report.
 
-## Features
+---
 
-- **Automated Lab Detection**: Uses CNN/MobileNetV2 model to identify lab logos from PDFs
-- **Multi-Lab Support**: Handles PDFs containing reports from multiple laboratories
-- **Data Extraction**: Extracts tables and test results from structured PDF reports
-- **Interactive Dashboard**: Streamlit-based web interface with visualization
-- **Result Analysis**: 
-  - Summary statistics
-  - Detection status charts
-  - Value distribution histograms
-  - Key findings identification
-- **Excel Export**: Both raw and formatted results available for download
+## Supported Laboratories
 
-## Supported Labs
+| Lab | Language | Format |
+|-----|----------|--------|
+| **Bactochem** (בקטוכם) | Hebrew / English | ICP-MS + VOC (5-page) |
+| **Aminolab** (אמינולאב) | Hebrew | ICP-MS + VOC (8-page) |
+| **ALS** | English | ICP-MS + VOC (multi-page) |
+| **Element** | English | ICP-MS |
 
-| Lab | Multi-Labs | Single Lab | Multiple Checks |
-|-----|------------|------------|-----------------|
-| ALS | ✓ | ✗ | ✗ |
-| Aminolab | ✓ | ✓ | ✓ |
-| Bactochem | ✓ | ✓ | ✓ |
-| Element | ✓ | ✗ | ✗ |
-
-**Legend:**
-- **Multi-Labs**: Can process PDFs containing multiple lab reports
-- **Single Lab**: Can process PDFs with only this lab's report
-- **Multiple Checks**: Supports processing multiple test batches/checks in one PDF
+---
 
 ## Project Structure
 
 ```
-lab-pdf-analyzer/
-├── app.py                      # Streamlit web application
-├── main.py                     # Main processing pipeline
-├── functions.py                # Data extraction and processing functions
-├── identifier.py               # ML model for logo classification
-├── image_extractor.py          # PDF image extraction utilities
-├── logging_config.py           # Logging configuration
-├── requirements.txt            # Python dependencies
-├── Dockerfile                  # Docker container configuration
-├── format.csv                  # Output format template
-├── lab_logo_classifier.h5      # Trained ML model
-├── ALS/
-│   └── params.json            # ALS-specific parameters
+lab_analysis/
+│
+├── main.py            # CLI orchestrator – runs the full pipeline
+├── functions.py       # Table extraction & unit conversion (Extractor class)
+├── regulations.py     # Regulation limits database (תקנות 2013)
+├── report.py          # Styled Excel report generator (ReportBuilder)
+├── identifier.py      # CNN logo classifier – detects lab from PDF images
+├── image_extractor.py # PDF image extraction (PyMuPDF + pdfplumber)
+├── logging_config.py  # Logging setup
+├── app.py             # Streamlit web UI
+│
+├── format.csv                  # Water Authority parameter list (94 tests)
+├── lab_logo_classifier.h5      # Trained CNN model for lab identification
+│
 ├── Bactochem/
-│   └── params.json            # Bactochem-specific parameters
+│   ├── params.json             # Parameter mapping for Bactochem
+│   └── *.pdf                   # Lab report PDFs
 ├── Aminolab/
-│   └── params.json            # Aminolab-specific parameters
+│   ├── params.json
+│   └── *.pdf
+├── ALS/
+│   ├── params.json
+│   └── *.pdf
 └── Element/
-    └── params.json            # Element-specific parameters
+    ├── params.json
+    └── *.pdf
 ```
+
+---
+
+## How It Works
+
+```
+PDF file
+   │
+   ├─▶  identifier.py   ──  CNN (lab_logo_classifier.h5)
+   │         │                detects which lab issued the report
+   │         ▼
+   ├─▶  image_extractor.py  extracts images from PDF pages
+   │
+   ├─▶  camelot            reads tables from PDF pages
+   │         │
+   ▼         ▼
+functions.py / Extractor
+   │    ┌─────────────────────────────────────┐
+   │    │  fix_hebrew_rtl()                   │
+   │    │  filter_unit_rows()                 │
+   │    │  _bactochem_clean_table()  etc.     │
+   │    └─────────────────────────────────────┘
+   │         │
+   │    Normalised DataFrame: [test | value | units]
+   │         │
+   ├─▶  params.json      maps lab synonyms → format.csv test names
+   │         │
+   ├─▶  regulations.py   looks up limit for each test
+   │         │
+   ▼         ▼
+report.py / ReportBuilder
+        Styled Excel with 2 sheets:
+        1. "דוח רשות המים"  – full parameter table
+        2. "סיכום תקינות"  – compliance summary
+```
+
+---
 
 ## Installation
 
-### Option 1: Docker (Recommended)
+### System requirements
 
-1. **Install Docker Desktop**
-   - Download from https://www.docker.com/products/docker-desktop
-   - Install and start Docker Desktop
+```bash
+# Ubuntu / Debian
+sudo apt-get install ghostscript libgl1 libglib2.0-0
 
-2. **Build the Docker image**
-   ```bash
-   docker build -t lab-analyzer .
-   ```
+# macOS
+brew install ghostscript
+```
 
-3. **Run the container**
-   ```bash
-   docker run -p 8501:8501 lab-analyzer
-   ```
+### Python packages
 
-4. **Access the application**
-   - Open browser to http://localhost:8501
+```bash
+pip install -r requirements.txt
+```
 
-### Option 2: Local Installation
+`requirements.txt`:
+```
+pandas>=1.5.0
+numpy>=1.23.0
+PyPDF2>=3.0.0
+openpyxl>=3.0.0
+streamlit>=1.28.0
+plotly>=5.17.0
+camelot-py[cv]>=0.11.0
+pdfplumber>=0.9.0
+PyMuPDF>=1.22.0
+tensorflow>=2.13.0
+scikit-learn>=1.3.0
+Pillow>=10.0.0
+matplotlib>=3.7.0
+opencv-python>=4.8.0
+ghostscript>=0.7
+```
 
-1. **Install system dependencies**
-   
-   **Ubuntu/Debian:**
-   ```bash
-   sudo apt-get update
-   sudo apt-get install ghostscript libgl1 libglib2.0-0
-   ```
-   
-   **macOS:**
-   ```bash
-   brew install ghostscript
-   ```
-
-2. **Install Python dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run the application**
-   ```bash
-   streamlit run app.py
-   ```
+---
 
 ## Usage
 
-### Web Interface
-
-1. **Select Lab**: Choose the laboratory from the dropdown
-2. **Multi-lab Toggle**: Enable if PDF contains multiple lab reports
-3. **Upload PDF**: Select your lab report PDF file
-4. **Run Analysis**: Click to process the document
-5. **View Results**: Navigate through tabs to see:
-   - Formatted results with visualizations
-   - Raw extracted data
-   - Download options
-
-### Command Line
+### Command line
 
 ```bash
-python main.py --lab ALS --input report.pdf --output results
+# Minimal
+python main.py --lab Bactochem --input bactochem/report.pdf
+
+# With metadata
+python main.py \
+    --lab     Aminolab \
+    --input   aminolab/big_petah_tikva.pdf \
+    --output  petah_tikva_results \
+    --site    "ביג פתח תקוה" \
+    --date    "10/05/2026" \
+    --time    "09:30"
+
+# PDF containing pages from multiple labs (auto-detect)
+python main.py --lab Bactochem --input mixed.pdf --multi true
 ```
 
 **Arguments:**
-- `--lab`: Lab name (ALS, Bactochem, Aminolab, Element)
-- `--input`: Path to PDF file
-- `--multi`: Enable multi-lab processing (true/false)
-- `--output`: Output filename (optional)
 
-## Configuration
+| Argument | Required | Description |
+|----------|----------|-------------|
+| `--lab` | ✅ | `Bactochem`, `Aminolab`, `ALS`, or `Element` |
+| `--input` | ✅ | Path to PDF file |
+| `--output` | — | Output filename prefix (default: lab name) |
+| `--multi` | — | `true` if the PDF contains pages from multiple labs |
+| `--site` | — | Sampling site (appears in report header) |
+| `--date` | — | Sampling date |
+| `--time` | — | Sampling time |
 
-### Lab Parameters
+**Output files:**
 
-Each lab has a `params.json` file containing:
-- Test parameter mappings
-- Unit conversions
-- Synonyms for test names
+| File | Contents |
+|------|----------|
+| `df_summary.xlsx` | Raw extracted tables, one sheet per check |
+| `{output}.xlsx` | Flat mapped values (legacy format) |
+| `{output}_Check1.xlsx` | Full styled Water Authority report |
 
-Example structure:
+### Streamlit web UI
+
+```bash
+streamlit run app.py
+# Open http://localhost:8501
+```
+
+Upload a PDF, select the lab, click **Run Analysis**. Download the raw data or the formatted report from the Downloads tab.
+
+---
+
+## Docker
+
+```bash
+# Build image
+docker build -t lab-analysis .
+
+# Run (mount a folder for PDFs and output)
+docker run -p 8501:8501 \
+    -v $(pwd)/data:/app/data \
+    lab-analysis
+```
+
+The container exposes the Streamlit UI on port 8501.
+
+---
+
+## Configuration – params.json
+
+Each lab folder contains a `params.json` mapping Water Authority test names to lab-specific synonyms and units.
+
 ```json
 {
-  "pH": {
-    "values": ["", "pH"],
-    "unit": ""
+  "CALCIUM AS CA": {
+    "unit":   "mg/L",
+    "values": ["mg/L", "סידןCa"]
   },
-  "Turbidity": {
-    "values": ["NTU", "Turbidity"],
-    "unit": "NTU"
+  "ALUMINUM (Al)": {
+    "unit":   "µg/L",
+    "values": ["mg/L", "אלומיניוםAl"]
+  },
+  "BENZENE": {
+    "unit":   "µg/L",
+    "values": ["mg/L", "Benzene"]
   }
 }
 ```
 
-### Format Template
+| Field | Meaning |
+|-------|---------|
+| `unit` | Target unit (Water Authority format) |
+| `values[0]` | Unit used by the lab in the PDF |
+| `values[1]` | Text fragment matched in the extracted `test` column |
 
-The `format.csv` file defines the output structure with columns:
-- `test`: Standard test name
-- `units`: Expected units
-- `values`: Extracted values (populated during processing)
+Unit conversion is applied automatically when `values[0]` differs from `unit` (e.g. mg/L → µg/L ×1000).
 
-## Model Training
+---
 
-To retrain the logo classification model:
+## Regulation Limits (regulations.py)
 
-```bash
-python identifier.py
+Limits are sourced from **תקנות בריאות העם (איכותם התברואית של מי שתייה), תשע"ג-2013**.
+
+```python
+from regulations import get_limit, compliance_status
+
+get_limit("ARSENIC AS AS")             # Limit(10, "µg/L", "≤10 µg/L")
+compliance_status("ZINC AS ZN", 7400)  # "חריג!"
+compliance_status("BENZENE", "not detected")  # "תקין"
 ```
 
-Requirements:
-- Training images organized in `Logo/` directory
-- Subdirectories named after each lab containing logo images
-- Minimum 20-30 images per lab recommended
+**Status values:**
 
-## Output Files
+| Status | Meaning |
+|--------|---------|
+| `תקין` | Within limit |
+| `חריג!` | Exceeds regulatory limit |
+| `בגבול גילוי` | Within limit but above 90% of it — monitor |
+| `לא ניתן לאמת` | LOQ may be above the regulatory limit |
+| `לא נבדק` | Parameter not found in the report |
 
-- `df_summary.xlsx`: Raw extracted data with all detected values
-- `{lab_name}.xlsx`: Formatted results matched to standard template
-- Uploaded PDFs saved to respective lab directories
+---
 
-## Docker Management
+## Report Output
 
-**Run in background:**
-```bash
-docker run -d -p 8501:8501 --name lab-app lab-analyzer
-```
+### Sheet 1 — "דוח רשות המים"
 
-**View logs:**
-```bash
-docker logs -f lab-app
-```
+| Column | Content |
+|--------|---------|
+| פרמטר (רשות המים) | Water Authority test name |
+| פרמטר (מעבדה) | Lab-specific name from params.json |
+| תוצאה (מקורית) | Value as reported in PDF |
+| יחידה (מקורית) | Unit as reported in PDF |
+| תוצאה (רש"מ) | Converted value |
+| יחידות (רש"מ) | Target unit |
+| גבול תקנות 2013 | Regulatory limit |
+| סטטוס | Compliance status (colour-coded) |
 
-**Stop container:**
-```bash
-docker stop lab-app
-docker rm lab-app
-```
+Row colours: green = compliant, yellow = near limit or LOQ concern, red = exceedance.
 
-**Rebuild after changes:**
-```bash
-docker build -t lab-analyzer . --no-cache
-```
+### Sheet 2 — "סיכום תקינות"
 
-## Troubleshooting
+Parameters grouped by severity:
 
-### Port Already in Use
-```bash
-# Find process using port 8501
-netstat -ano | findstr :8501
+- 🔴 Exceedances — requires immediate action
+- 🟡 Near-limit values / LOQ concerns — requires monitoring
+- ✅ Compliant values that have a defined regulatory limit
 
-# Use different port
-docker run -p 8502:8501 lab-analyzer
-```
+---
 
-### PDF Not Processing
-- Ensure PDF is not password-protected
-- Check if lab is supported
-- Verify params.json exists for selected lab
+## Hebrew Text Handling
 
-### Model File Missing
-- Download or train `lab_logo_classifier.h5`
-- Place in project root directory
+Lab PDFs store Hebrew text in left-to-right byte order inside the PDF stream. `camelot` reads this as-is, so Hebrew words appear reversed (e.g. `ןדיס` instead of `סידן`).
 
-### Excel Files Not Displaying
-- Check file permissions
-- Ensure openpyxl is installed
-- Verify Excel files are created in working directory
+`functions.fix_hebrew_rtl()` reverses only Hebrew Unicode segments while leaving ASCII, digits, and chemical symbols untouched. `functions.letters_only()` then strips punctuation and spaces to produce a clean key for synonym matching.
 
-## Dependencies
+---
 
-**Core:**
-- Python 3.10+
-- TensorFlow 2.13+
-- Streamlit 1.28+
-- Pandas 1.5+
+## Adding a New Lab
 
-**PDF Processing:**
-- camelot-py
-- pdfplumber
-- PyMuPDF
+1. Create a folder and add a PDF:
+   ```bash
+   mkdir NewLab
+   cp report.pdf NewLab/
+   ```
 
-**Visualization:**
-- Plotly 5.17+
-- Matplotlib
+2. Create `NewLab/params.json` with a mapping entry for each parameter the lab reports.
 
-See `requirements.txt` for complete list.
+3. Add the lab config to `_LAB_CONFIG` in `main.py`:
+   ```python
+   "NewLab": {
+       "tables_area": (["x1,y1,x2,y2"], ...),
+       "pages":       ["1", "2", ...],
+       "row_tol":     [7, 12],   # optional
+   }
+   ```
+
+4. Add a branch for the new lab in `Extractor.extruct_col_from_lab()` in `functions.py`.
+
+5. Collect logo images in `Logo/lab_new/` and retrain the classifier in `identifier.py`.
+
+---
+
+## Known Limitations
+
+| Parameter | Issue |
+|-----------|-------|
+| Vinyl chloride | Regulation limit 0.5 µg/L; typical laboratory LOQ = 1 µg/L. A "Not Detected" result does not guarantee compliance — a dedicated low-LOQ method is required. |
+| EDB (ethylene dibromide) | Regulation limit 0.05 µg/L; typical LOQ = 1 µg/L. Same issue. |
+| 1,4-Dioxane (Aminolab) | Reported in ppm (LOQ = 5 ppm = 5000 µg/L). A specific µg/L method is needed for meaningful monitoring. |
+| Bicarbonate (Aminolab) | Reported as mg/L CaCO₃ — converted to mg/L HCO₃ by ×1.22. |
+| Mercury | Not included in Bactochem's standard ICP scan — must be requested separately. |
+| Multi-lab PDFs | Logo classification accuracy depends on the quantity and quality of training images in `Logo/`. |
+
+---
 
 ## License
 
-[Your License Here]
-
-## Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/NewFeature`)
-3. Commit changes (`git commit -m 'Add NewFeature'`)
-4. Push to branch (`git push origin feature/NewFeature`)
-5. Open Pull Request
-
-## Support
-
-For issues and questions:
-- Open an issue on GitHub
-- Check existing documentation
-- Review log files in `lab_analysis.log`
-
-## Acknowledgments
-
-- TensorFlow team for MobileNetV2
-- Camelot developers for PDF table extraction
-- Streamlit team for the web framework
+Internal use — Geo Danya Engineering Ltd.
