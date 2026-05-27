@@ -1,0 +1,116 @@
+2026-05-27 10:58:03 - logging_config - INFO - Extracting tables from Aminolab/11844.26.PDF
+2026-05-27 10:58:03 - logging_config - INFO - Aminolab: detected VOC-only format (4 pages/check)
+2026-05-27 10:58:08 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:08 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:08 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:08 - logging_config - INFO - Sheet written: 'ойн - баш 3WP'
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - INFO - Sheet written: 'ойн - баш 7WP'
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:09 - logging_config - INFO - Sheet written: 'ойн - баш 11WP'
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - INFO - Sheet written: 'ойн - баш 21WP'
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:10 - logging_config - INFO - Sheet written: 'ойн - баш 31WP'
+2026-05-27 10:58:11 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:11 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:11 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:11 - logging_config - INFO - Sheet written: 'ойн - баш 51WP'
+2026-05-27 10:58:12 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:12 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:12 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:12 - logging_config - INFO - Sheet written: 'ойн - баш 61WP'
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - INFO - Sheet written: 'ойн - баш 82WP'
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:13 - logging_config - INFO - Sheet written: 'ойн - баш 92WP'
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - INFO - Sheet written: 'ойн - баш 13WP'
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:14 - logging_config - INFO - Sheet written: 'ойн - баш 23WP'
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - INFO - Sheet written: 'ойн - баш 33WP'
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:15 - logging_config - INFO - Sheet written: 'ойн - баш 83WP'
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - INFO - Sheet written: 'ойн - баш 63WP'
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:16 - logging_config - INFO - Sheet written: 'ойн - баш 93WP'
+2026-05-27 10:58:17 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:17 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:17 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:17 - logging_config - INFO - Sheet written: 'ойн - баш 14WP'
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - INFO - Sheet written: 'ойн - баш 34WP'
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:58:18 - logging_config - INFO - Sheet written: 'ойн - баш 64WP'
+2026-05-27 10:58:18 - logging_config - INFO - Building Water Authority report
+2026-05-27 10:58:18 - logging_config - INFO - Report written to ойн_-_баш_3WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_7WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_11WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_21WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_31WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_51WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_61WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_82WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_92WP_report.xlsx
+2026-05-27 10:58:19 - logging_config - INFO - Report written to ойн_-_баш_13WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_23WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_33WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_83WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_63WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_93WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_14WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_34WP_report.xlsx
+2026-05-27 10:58:20 - logging_config - INFO - Report written to ойн_-_баш_64WP_report.xlsx
+Error: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 373, in <module>
+    run(args)
+    ~~~^^^^^^
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 363, in run
+    print(f"\n\u2713 Raw data  \u2192 df_summary.xlsx")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\et3\AppData\Local\anaconda3\Lib\encodings\cp1255.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 376, in <module>
+    import traceback; print(traceback.format_exc())
+                      ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\et3\AppData\Local\anaconda3\Lib\encodings\cp1255.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 241: character maps to <undefined>

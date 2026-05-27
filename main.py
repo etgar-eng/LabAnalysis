@@ -20,12 +20,13 @@ os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 warnings.filterwarnings("ignore")
 
 import camelot
+import pdfplumber
 import pandas as pd
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 from PIL import Image
 from tensorflow.keras.models import load_model
 
-from functions import Extractor, get_page_count
+from functions import Extractor, get_page_count, extract_sample_description
 from identifier import predict_logo
 from image_extractor import extract_images_hybrid_method, print_image_summary
 from logging_config import setup_logging, suppress_warnings
@@ -37,6 +38,15 @@ pd.set_option("display.max_columns", 0)
 logger = setup_logging(log_level=logging.INFO, log_file="lab_analysis.log")
 
 # ── Table areas per lab ───────────────────────────────────────────────────────
+
+# Aminolab VOC-only format (e.g. 11844.26): cover(1) + 3 VOC pages per check.
+# None at index 0 is a placeholder so pages_per_check == 4 and offsets are correct.
+_AMINOLAB_VOC_CONFIG: dict = {
+    "tables_area": (None, None, None, None),
+    "flavors":     ("stream", "stream", "stream", "stream"),
+    "pages":       [None, "2", "3", "4"],
+    "row_tol":     [7, 12],
+}
 
 _LAB_CONFIG: dict[str, dict] = {
     "ALS": {
@@ -60,18 +70,20 @@ _LAB_CONFIG: dict[str, dict] = {
         "row_tol": [7, 12],
     },
     "Aminolab": {
+        # Standard mixed format (major elements on pg 2 + VOC on pgs 4-6).
+        # pages_per_check = 8.  Page 6 switched from lattice → stream (no borders).
         "tables_area": (
-            ["250,115,530,530"],
-            ["250,200,530,690"],
-            None,
-            ["100,390,550,700"],
-            ["30,110,460,680"],
-            None,
-            None,
-            None,
+            ["250,115,530,530"],  # pg 1 – cover (discarded later by content check)
+            ["250,200,530,690"],  # pg 2 – ICP-MS major elements
+            None,                  # pg 3 – notes, skip
+            ["100,390,550,700"],  # pg 4 – VOC page 1
+            ["30,110,460,680"],   # pg 5 – VOC page 2
+            None,                  # pg 6 – VOC page 3 (full-page, stream)
+            None,                  # pg 7 – notes, skip
+            None,                  # pg 8 – disclaimer, skip
         ),
         "flavors": (
-            "stream", "stream", None, "stream", "stream", "lattice", None, None,
+            "stream", "stream", None, "stream", "stream", "stream", None, None,
         ),
         "pages":   ["1", "2", None, "4", "5", "6", None, None],
         "row_tol": [7, 12],
@@ -87,6 +99,14 @@ _LAB_CONFIG: dict[str, dict] = {
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
+
+def _print(msg: str):
+    """Print safely, replacing characters that can't be encoded in the current terminal."""
+    try:
+        print(msg)
+    except UnicodeEncodeError:
+        print(msg.encode(sys.stdout.encoding or 'ascii', errors='replace').decode(sys.stdout.encoding or 'ascii', errors='replace'))
+
 
 def _reset_excel(path: str):
     if os.path.exists(path):
@@ -123,7 +143,9 @@ def _sheet_name(site: str, check_no: int, total_checks: int) -> str:
 
 
 def _camelot_params(cfg: dict, page: str, area, flavor: str = "stream", is_first: bool = False) -> dict:
-    params = {"pages": page, "flavor": flavor, "table_areas": area}
+    params: dict = {"pages": page, "flavor": flavor}
+    if area is not None:          # None → no area restriction (use full page)
+        params["table_areas"] = area
     if flavor == "stream":
         if cfg.get("split_text") is not None:
             params["split_text"] = cfg["split_text"]
@@ -178,6 +200,8 @@ class PdfLabAnalysisReader:
         self.page_count    = get_page_count(self.pdf)
         self.checks_number = self.page_count // 8 if self.lab == "Aminolab" else 1
         self.df_tables: list[pd.DataFrame] = []
+        self.sample_dates: dict[str, str] = {}   # sheet_name → date extracted from PDF
+        self.sheet_data:   dict[str, pd.DataFrame] = {}  # sheet_name → extracted DataFrame
 
         _reset_excel("df_summary.xlsx")
         _reset_excel(f"{self.lab}.xlsx")
@@ -186,6 +210,20 @@ class PdfLabAnalysisReader:
     def _run(self):
         try:
             cfg  = _LAB_CONFIG[self.lab]
+
+            # ── Aminolab: auto-detect VOC-only vs mixed format ─────────────
+            # VOC-only reports (e.g. 11844.26) have 4 pages per check:
+            #   cover(1) + 3 VOC pages.  The standard mixed format has 8 pages
+            #   per check and puts major-element (ICP-MS) data on page 2.
+            # Detection: if page 2 starts with a "VOC by Purge & Trap" section
+            #   it is VOC-only; otherwise use the standard 8-page config.
+            if self.lab == "Aminolab":
+                with pdfplumber.open(self.pdf) as _pdf:
+                    _p2 = (_pdf.pages[1].extract_text() or "") if len(_pdf.pages) >= 2 else ""
+                if "VOC by Purge & Trap" in _p2:
+                    logger.info("Aminolab: detected VOC-only format (4 pages/check)")
+                    cfg = _AMINOLAB_VOC_CONFIG
+
             pages = cfg["pages"]
 
             if self.args.multi == "true":
@@ -198,11 +236,12 @@ class PdfLabAnalysisReader:
             pages_per_check = len(pages)
             first_real   = next(p for p in pages if p is not None)
             last_real    = _last_real_page(pages)
+            well_names = extract_sample_description(self.pdf)
 
             with pd.ExcelWriter("df_summary.xlsx", mode="a", engine="openpyxl",
                                 if_sheet_exists="replace") as writer:
 
-                for check_no in range(1, self.checks_number + 1):
+                for check_no, (_, (names, sample_date)) in enumerate(well_names.items(), start=1):
                     offset = (check_no - 1) * pages_per_check
                     last_page = str(int(last_real) + offset)
 
@@ -224,12 +263,17 @@ class PdfLabAnalysisReader:
                         if page == last_page:
                             df_all = Extractor.extruct_col_from_lab(
                                 self.df_tables, self.lab)
-                            tab = _sheet_name(
-                                getattr(self.args, "site", ""),
-                                check_no,
-                                self.checks_number,
-                            )
+                            tab = names or _sheet_name(self.args.site, check_no, len(well_names))
+
+                            # Keep a clean in-memory copy for report building
+                            self.sheet_data[tab] = df_all.copy()
+
                             df_all.to_excel(writer, sheet_name=tab, index=False)
+                            self.sample_dates[tab] = sample_date or ""
+                            # Persist sample_date in E1 so df_summary is the
+                            # single source of truth for downstream consumers
+                            if sample_date:
+                                writer.sheets[tab]["E1"] = sample_date
                             logger.info("Sheet written: '%s'", tab)
                             self.df_tables = []
 
@@ -269,7 +313,7 @@ def run(args):
 
     # 2 – extract raw tables from PDF
     logger.info("Extracting tables from %s", args.input)
-    PdfLabAnalysisReader(args)
+    reader = PdfLabAnalysisReader(args)
 
     # 3 – build styled Excel report
     logger.info("Building Water Authority report")
@@ -277,24 +321,24 @@ def run(args):
     output_name = args.output or re.sub(r'[\\/*?:\[\]\s]', '_', site)
     report_dir  = Path(".")
 
-    excel_file = pd.ExcelFile("df_summary.xlsx")
-    meta = ReportMeta(
-        report_number=Path(args.input).stem,
-        site=site,
-        sampling_date=args.date,
-        sampling_time=args.time,
-        lab_name=args.lab,
-    )
+    # Use in-memory sheet data (avoids stale df_summary.xlsx reads)
+    sheet_names = list(reader.sheet_data.keys())
 
-    for sheet_name in excel_file.sheet_names:
-        df_raw = excel_file.parse(sheet_name)
+    for sheet_name in sheet_names:
+        df_raw = reader.sheet_data[sheet_name]          # clean, freshly-extracted
+        meta = ReportMeta(
+            report_number=Path(args.input).stem,
+            site=sheet_name if sheet_name else args.site,
+            sampling_date=reader.sample_dates.get(sheet_name, "") or args.date,
+            sampling_time=args.time,
+            lab_name=args.lab,
+        )
         builder = ReportBuilder(
             df_raw=df_raw,
             df_format=extractor.df_format,
             params=extractor.params,
-            meta=meta
-            )
-        # Output file named after the site / borehole
+            meta=meta,
+        )
         safe = re.sub(r'[\\/*?:\[\]\s]', '_', sheet_name)
         out  = report_dir / f"{safe}_report.xlsx"
         builder.build(out)
@@ -302,23 +346,29 @@ def run(args):
 
     # 4 – plain mapped file (legacy compatibility), tabs named after site
     plain_path = Path(f"{output_name}.xlsx")
+    _reset_excel(str(plain_path))   # ensure file exists before appending
     with suppress_warnings():
         with pd.ExcelWriter(str(plain_path), mode="a", engine="openpyxl",
                             if_sheet_exists="replace") as writer:
-            for sheet_name in excel_file.sheet_names:
-                df_raw = excel_file.parse(sheet_name)
+            for sheet_name in sheet_names:
+                df_raw = reader.sheet_data[sheet_name]
                 df_fmt = extractor.df_format.copy()
                 df_fmt["values"] = df_fmt["test"].apply(
                     lambda t: extractor.search_for_value(df_raw, t)
                 )
+
                 df_fmt.to_excel(writer, index=False, sheet_name=sheet_name)
+
+                date_val = reader.sample_dates.get(sheet_name, "")
+                if date_val:
+                    writer.sheets[sheet_name]["C3"] = date_val
             _remove_default_sheet(writer)
 
-    print(f"\n✓ Raw data  → df_summary.xlsx")
-    print(f"✓ Mapped    → {plain_path}")
-    for sheet_name in excel_file.sheet_names:
+    _print(f"\n[OK] Raw data  -> df_summary.xlsx")
+    _print(f"[OK] Mapped    -> {plain_path}")
+    for sheet_name in sheet_names:
         safe = re.sub(r'[\\/*?:\[\]\s]', '_', sheet_name)
-        print(f"✓ Report    → {safe}_report.xlsx")
+        _print(f"[OK] Report    -> {safe}_report.xlsx")
 
 
 if __name__ == "__main__":

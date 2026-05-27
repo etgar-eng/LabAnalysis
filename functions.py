@@ -1,14 +1,13 @@
 import sys
-import re
 import json
 import logging
 import os
 from pathlib import Path
 from typing import Optional
-
+import pdfplumber
 import PyPDF2
 import pandas as pd
-
+import re
 from logging_config import setup_logging
 
 logger = setup_logging(
@@ -90,6 +89,40 @@ def get_page_count(pdf_path: str) -> int:
     except FileNotFoundError as exc:
         logger.error("PDF not found: %s", exc)
         sys.exit(1)
+
+
+#TODO: add more relvant keyword from the pdfs, like sample date and ect... maybe there are more synonims that should be used in the code
+
+def extract_sample_description(pdf_path,
+                               desc_keyword="תאור הדוגמה:"[::-1],
+                               date_keyword="תאריך הדיגום:"[::-1]) -> dict:
+    """Return {page_num: (description, date_str | None)}.
+
+    Scans each page for two keywords:
+      - *desc_keyword* ('תאור הדוגמה:')  → sample description / tab name
+      - *date_keyword* ('תאריך הדיגום:') → sampling date (plain text, no regex parsing)
+    The text remaining on each matching line after stripping the keyword is the value.
+    """
+    desc_pattern = re.compile(desc_keyword)
+    date_pattern = re.compile(date_keyword)
+    result = {}
+
+    with pdfplumber.open(pdf_path) as pdf:
+        for page_num, page in enumerate(pdf.pages, 1):
+            text = page.extract_text()
+            if not text:
+                continue
+            description = None
+            date_str    = None
+            for line in text.splitlines():
+                if desc_pattern.search(line):
+                    description = desc_pattern.sub("", line).strip()[::-1]
+                if date_pattern.search(line):
+                    date_str = date_pattern.sub("", line).strip()
+            if description is not None or date_str is not None:
+                result[page_num] = (description, date_str)
+
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -212,26 +245,118 @@ def _element_clean_tables(dfs: list[pd.DataFrame]) -> pd.DataFrame:
     return df
 
 
+def _aminolab_major_cols(df: pd.DataFrame):
+    """Return (value_col, units_col, test_col) column indices from a major-elements table.
+
+    Column detection is content-based so it works for any number of camelot columns:
+    - units column  : contains mg/L / µg/L / ug/L
+    - value column  : highest count of numeric-looking cells (among non-units cols)
+    - test column   : highest count of Hebrew characters (among remaining cols);
+                      falls back to the last remaining column
+    """
+    ncols = len(df.columns)
+
+    # 1. Find units column
+    units_re = re.compile(r'mg/[lL]|µg/[lL]|ug/[lL]', re.IGNORECASE)
+    units_ci = None
+    for ci in range(ncols):
+        if df.iloc[:, ci].astype(str).str.contains(units_re, na=False).any():
+            units_ci = ci
+            break
+    if units_ci is None:
+        return None
+
+    # 2. Find value column (most numeric-looking cells, excluding units col)
+    numeric_re = re.compile(r'^<?[\s]*[\d]+[\d.,\s]*$')
+    val_ci = None
+    best_n = 0
+    for ci in range(ncols):
+        if ci == units_ci:
+            continue
+        n = df.iloc[:, ci].astype(str).str.strip().str.match(numeric_re).sum()
+        if n > best_n:
+            best_n = n
+            val_ci = ci
+    if val_ci is None:
+        return None
+
+    # 3. Find test column (most Hebrew characters, excluding value/units cols)
+    heb_re = re.compile(r'[֐-׿]')
+    remaining = [ci for ci in range(ncols) if ci not in (units_ci, val_ci)]
+    if not remaining:
+        return None
+    test_ci = max(remaining, key=lambda ci:
+                  df.iloc[:, ci].astype(str).str.contains(heb_re, na=False).sum())
+
+    return val_ci, units_ci, test_ci
+
+
 def _aminolab_clean_tables(dfs: list[pd.DataFrame]) -> pd.DataFrame:
-    """Combine and normalise camelot tables from an Aminolab report."""
+    """Combine and normalise camelot tables from an Aminolab report.
+
+    Handles two Aminolab PDF formats:
+    - Mixed (standard): major-elements table (µg/L units, ~4 cols) + VOC tables (ppb, 3–7 cols)
+    - VOC-only (e.g. 11844.26): only VOC tables across 3 pages per check
+
+    Detection is content-based:
+    • If filter_unit_rows() finds µg/L/mg/L rows → treat as major-elements table
+    • Otherwise → treat as a VOC (ppb) table
+
+    VOC column mapping (after removing header/quality columns):
+    • 7 cols  (first VOC page, full width): compound=col[0], value=col[3]
+    • 3–6 cols (continuation pages):        compound=col[0], value=col[2]
+    """
     rows: list[pd.DataFrame] = []
 
     for i, raw in enumerate(dfs):
         try:
-            if i <= 2:
-                df = filter_unit_rows(raw)
-                if df is None or df.empty:
-                    continue
-                df = df.drop(columns=[2], axis=1, errors='ignore')
-                df.columns = ['value', 'units', 'test']
-                df = df[['test', 'value', 'units']]
-            else:
-                raw = raw.drop(columns=[col for col in [1, 3] if col in raw.columns], errors='ignore')
-                raw = raw.assign(units='ppb')
-                raw.columns = ['test', 'value', 'units']
-                df = raw
+            # ── Try major-elements path first ──────────────────────────────
+            df_units = filter_unit_rows(raw)
+            if df_units is not None and not df_units.empty:
+                ncols = len(df_units.columns)
+                cols = _aminolab_major_cols(df_units)
+                if cols is None:
+                    logger.warning(
+                        "Aminolab: could not identify value/units/test cols in "
+                        "table %d (%d cols) – trying positional fallback", i, ncols)
+                    # Positional fallback: works for the standard 4-col layout
+                    if ncols == 3:
+                        out = df_units.copy()
+                        out.columns = ['value', 'units', 'test']
+                    elif ncols >= 4:
+                        out = df_units.iloc[:, [0, 1, 3]].copy()
+                        out.columns = ['value', 'units', 'test']
+                    else:
+                        continue
+                else:
+                    val_ci, units_ci, test_ci = cols
+                    out = df_units.iloc[:, [val_ci, units_ci, test_ci]].copy()
+                    out.columns = ['value', 'units', 'test']
+                    logger.debug(
+                        "Aminolab: table %d (%d cols) → val=%d units=%d test=%d",
+                        i, ncols, val_ci, units_ci, test_ci)
 
-            rows.append(df)
+                rows.append(out[['test', 'value', 'units']])
+                continue
+
+            # ── VOC (ppb) table ────────────────────────────────────────────
+            ncols = len(raw.columns)
+            # Column layout depends on how many cols camelot returns:
+            #   5 or 7 cols (first VOC page, full-width extraction):
+            #       compound(0) | empty/Hebrew(1) | CAS(2) | value(3) | quality …
+            #   3, 4 or 6 cols (continuation pages / narrower area):
+            #       compound(0) | CAS(1) | value(2) | quality(3) …
+            if ncols in (5, 7):
+                voc = raw.iloc[:, [0, 3]].copy()
+            elif ncols in (3, 4, 6):
+                voc = raw.iloc[:, [0, 2]].copy()
+            else:
+                logger.warning("Aminolab: unexpected %d columns in VOC table – skipping", ncols)
+                continue
+
+            voc.columns = ['test', 'value']
+            voc = voc.assign(units='ppb')
+            rows.append(voc[['test', 'value', 'units']])
 
         except Exception as exc:
             logger.error("Aminolab: error processing table %d: %s", i, exc)
@@ -241,7 +366,7 @@ def _aminolab_clean_tables(dfs: list[pd.DataFrame]) -> pd.DataFrame:
 
     result = pd.concat(rows, ignore_index=True)
     result['test'] = result['test'].apply(fix_hebrew_rtl).apply(letters_only)
-    result['value'] = result['value'].str.extract(r'<?([\d.]+)')
+    result['value'] = result['value'].astype(str).str.extract(r'<?([\d.]+)')
     result['value'] = pd.to_numeric(result['value'], errors='coerce')
     result['test'] = result['test'].str.replace('#', '', regex=False)
     result['units'] = (
@@ -251,7 +376,9 @@ def _aminolab_clean_tables(dfs: list[pd.DataFrame]) -> pd.DataFrame:
             r'(mg/L|µg/L|mg/l|ug/l|cfu/100mL|ppm|ppb|NTU)', expand=False
         )
     )
-    return result.dropna(how='all').reset_index(drop=True)
+    # Drop header/empty rows: value must be a real number and test must be non-empty
+    result = result[result['value'].notna() & result['test'].str.strip().ne('')].reset_index(drop=True)
+    return result
 
 
 # ---------------------------------------------------------------------------

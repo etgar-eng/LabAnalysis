@@ -1,0 +1,60 @@
+2026-05-27 10:52:30 - logging_config - INFO - Extracting tables from Aminolab/big_petach_tikva.pdf
+2026-05-27 10:52:34 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:34 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:34 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:34 - logging_config - INFO - Sheet written: 'מי תהום - קו מאסף'
+2026-05-27 10:52:35 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:35 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:35 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:35 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 2'
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 4'
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:36 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 8'
+2026-05-27 10:52:37 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:37 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:37 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:37 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 01'
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 21'
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - WARNING - No rows with measurement units found
+2026-05-27 10:52:38 - logging_config - INFO - Sheet written: 'מי תהום - קידוח הפקה 61'
+2026-05-27 10:52:39 - logging_config - INFO - Building Water Authority report
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קו_מאסף_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_2_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_4_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_8_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_01_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_21_report.xlsx
+2026-05-27 10:52:39 - logging_config - INFO - Report written to מי_תהום_-_קידוח_הפקה_61_report.xlsx
+Error: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 373, in <module>
+    run(args)
+    ~~~^^^^^^
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 363, in run
+    print(f"\n\u2713 Raw data  \u2192 df_summary.xlsx")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\et3\AppData\Local\anaconda3\Lib\encodings\cp1255.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 2: character maps to <undefined>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\et3\PycharmProjects\lab_analysis\main.py", line 376, in <module>
+    import traceback; print(traceback.format_exc())
+                      ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\et3\AppData\Local\anaconda3\Lib\encodings\cp1255.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2713' in position 241: character maps to <undefined>

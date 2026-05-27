@@ -196,7 +196,6 @@ class ReportBuilder:
 
         # Metadata block
         meta_pairs = [
-            ("B", "מס' תעודה:", "C", self.meta.report_number),
             ("B", "אתר דיגום:", "C", self.meta.site),
             ("B", "מועד דיגום:", "C",
              f"{self.meta.sampling_date}  {self.meta.sampling_time}".strip()),
